@@ -61,71 +61,130 @@
      </div>
  
     </aside>
-    <main class="p-4"> 
-      <h2 class="text-3xl">Task<span class="text-primary font-semibold font-title">Flow</span> <span class="font-bigTitle">manage ur tasks smoothly</span></h2>
+    <main class="p-4 flex flex-col gap-16"> 
+      <div class="flex flex-col justify-between">
 
-      <div class="class=bg-gray-100 p-4 grid grid-cols-3 justify-content-center w-full gap-8">
+    
+                  <h2 class="text-3xl">Task<span class="text-primary font-semibold font-title">Flow</span> <span class="font-bigTitle">manage ur tasks smoothly</span></h2>
+                  
+                  <p class="text-gray-400  text-md">Designed by Hamza GBOURI</p>
 
-      <div class="flex flex-col gap-4 items-center">
-          <div class="border-dashed border-2 border-borderColor rounded-3xl h-auto  p-4 w-full relative">
-            <span class="absolute -top-3  left-4 px-2 bg-bgcolor text-xs text-gray-600 font-medium">TO DO LIST</span>
+                  <h4 class="pt-4">
+                    Fil
+                  </h4>
+                  
+                  
+                </div>
+                  <!-- Tasks -->
+                  <div class="bg-gray-100 p-4 grid grid-cols-3 justify-content-center w-full gap-8">
 
-            <!-- Cards Todo -->
-            <div class="card w-full h-32 bg-white rounded-bl-3xl rounded-br-3xl flex flex-col mb-8 relative">
-              <div class="absolute top-0 left-0 w-full h-2 bg-green-500 rounded-t-3xl"></div>
-              
-              <div class="flex flex-col px-4 h-full justify-center items-center relative">
-                  <div class="absolute top-4 right-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" class="fill-current text-gray-600">
-                          <path d="m14.06 9.02l.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/>
-                      </svg>
+                  <div class="flex flex-col gap-4 items-center relative">
+                    <div id="" class="border-dashed border-2 border-borderColor rounded-3xl h-16 bg-white  p-4 w-full relative z-10 flex justify-between">
+                      <h3>TODO List</h3>
+                      
+                      <p id="nbrTodoArea">0</p>
+                      <img class="w-12" src="./image/filter.png" alt="">
+
+
+                    </div>
+                      <div id="todo-tasks-container" class="border-dashed border-2 border-borderColor rounded-3xl h-auto  p-4 w-full relative z-10">
+
+                        <!-- Cards Todo -->
+                        <!-- <div class="card w-full h-32 bg-white rounded-bl-3xl rounded-br-3xl flex flex-col mb-8 relative">
+                          <div class="absolute top-0 left-0 w-full h-2 bg-green-500 rounded-t-3xl"></div>
+                          
+                          <div class="flex flex-col px-4 h-full justify-center items-center relative">
+                              <div class="absolute top-4 right-2">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" class="fill-current text-gray-600">
+                                      <path d="m14.06 9.02l.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/>
+                                  </svg>
+                              </div>
+                      
+                              <div class="font-semibold text-gray-800 mt-4">Titre de tâche</div>
+                              
+                              <div class="text-gray-500 absolute bottom-2 right-8">Délai</div>
+                          </div>
+                      </div> -->
+                        <!-- Card2 -->
+                        <!-- <div class="card w-full h-32 bg-white rounded-bl-3xl rounded-br-3xl flex flex-col mb-8 relative">
+                          <div class="absolute top-0 left-0 w-full h-2 bg-red-500 rounded-t-3xl"></div>
+                          
+                          <div class="flex flex-col px-4 h-full justify-center items-center relative">
+                              <div class="absolute top-4 right-2">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" class="fill-current text-gray-600">
+                                      <path d="m14.06 9.02l.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/>
+                                  </svg>
+                              </div>
+                      
+                              <div class="font-semibold text-gray-800 mt-4">Titre de tâche</div>
+                              
+                              <div class="text-gray-500 absolute bottom-2 right-8">Délai</div>
+                          </div>
+                      </div> -->
+                      </div>
+                      <button id="btn-add-todo" class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>
+                  </div>
+                  <!-- DOING LIST -->
+                  <div class="flex flex-col gap-4 items-center relative">
+                    <div id="" class="border-dashed border-2 border-borderColor rounded-3xl h-16 bg-white  p-4 w-full relative z-10">
+                    </div>
+                        <div id="doing-tasks-container" class="border-dashed border-2 border-borderColor rounded-3xl h-auto w-full p-4 relative z-10" >
+
+                        </div>
+                        <button type="submit" id="btn-add-doing" class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>
+                  </div>
+                  <!-- DONE LIST -->
+                <div class="flex flex-col gap-4 items-center relative">
+                  <div id="" class="border-dashed border-2 border-borderColor rounded-3xl h-16 bg-white  p-4 w-full relative z-10">
+                  </div>
+                        <div id="done-tasks-container"  class="border-dashed border-2 border-borderColor rounded-3xl h-auto w-full p-4 z-10">
+
+                        </div>
+                        <button id="btn-add-done" class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>
+                </div>
+                </div>
+                  <!-- FIN Tasks -->
+
+                <div id="modal" class="modal bg-black bg-opacity-75 hidden items-center justify-center fixed inset-0 z-50 ">
+                  <div class="w-1/4 h-3/4 border border-2 border-black rounded-3xl bg-white relative z-50 ">
+                    <svg class=" fill-primary absolute cursor-pointer top-0 right-0 pr-4 pt-2 w-10 h-8"    onclick="document.getElementById('modal').style.display='none'" xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24"><path   d="M20.48 3.512a11.97 11.97 0 0 0-8.486-3.514C5.366-.002-.007 5.371-.007 11.999c0 3.314 1.344 6.315 3.516 8.487A11.97 11.97 0 0 0 11.995 24c6.628 0 12.001-5.373 12.001-12.001c0-3.314-1.344-6.315-3.516-8.487m-1.542 15.427a9.8 9.8 0 0 1-6.943 2.876c-5.423 0-9.819-4.396-9.819-9.819a9.8 9.8 0 0 1 2.876-6.943a9.8 9.8 0 0 1 6.942-2.876c5.422 0 9.818 4.396 9.818 9.818a9.8 9.8 0 0 1-2.876 6.942z"/><path fill="#5051fa" d="m13.537 12l3.855-3.855a1.091 1.091 0 0 0-1.542-1.541l.001-.001l-3.855 3.855l-3.855-3.855A1.091 1.091 0 0 0 6.6 8.145l-.001-.001l3.855 3.855l-3.855 3.855a1.091 1.091 0 1 0 1.541 1.542l.001-.001l3.855-3.855l3.855 3.855a1.091 1.091 0 1 0 1.542-1.541l-.001-.001z"/></svg>
+                 
+                    <div class="flex flex-col p-4">
+                    <h3 class=" flex justify-center items-center" id="modal-title"></h3>
+                    <form id="task-form" action="" class="flex flex-col pt-16 gap-4">
+                      
+                      <select value="" class="border border-2 border-gray-200 rounded-lg p-2" id = "priority-list" >  
+                        <option id="priority" disabled > ---Choose a priority--- </option>  
+                        <option value="1" > P1 </option>  
+                        <option value="2"> P2 </option>  
+                        <option value="3"> P3 </option>  
+                        </select>  
+                        <div class="flex flex-col">
+                      <label for="task-title-input ">Title</label>
+                      <input value="" class="border border-gray-200 border-2 rounded-lg p-2" type="text" id="task-title-input" name="task-title" >
+                    </div>
+                      <div class="flex flex-col">
+                      <label for="task-date-input">Date</label>
+                      <input value="" class="border border-gray-200 border-2 rounded-lg p-2" type="date" id="task-date-input" name="task-date"  >
+                    </div>
+                      <div class="flex flex-col">
+                      <label value="" for="task-description-input">Description</label>
+                      <textarea value="" class="border border-gray-200 border-2 rounded-lg p-2"  id="task-description-input" name="task-description" ></textarea>
+                    </div>
+                    <button type="submit" id="btn-add-modal" class="color-primary bg-primary rounded-3xl h-12 w-full text-white font-title font-bold ">Add Task</button>
+                    <div id="error" >
+                        <p class="text-green text-center" id="error-text"></p>
+                    </div>
+                  </form>
                   </div>
           
-                  <div class="font-semibold text-gray-800 mt-4">Titre de tâche</div>
-                  
-                  <div class="text-gray-500 absolute bottom-2 right-8">Délai</div>
-              </div>
-          </div>
-            <!-- Card2 -->
-            <div class="card w-full h-32 bg-white rounded-bl-3xl rounded-br-3xl flex flex-col mb-8 relative">
-              <div class="absolute top-0 left-0 w-full h-2 bg-red-500 rounded-t-3xl"></div>
-              
-              <div class="flex flex-col px-4 h-full justify-center items-center relative">
-                  <div class="absolute top-4 right-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" class="fill-current text-gray-600">
-                          <path d="m14.06 9.02l.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/>
-                      </svg>
                   </div>
-          
-                  <div class="font-semibold text-gray-800 mt-4">Titre de tâche</div>
-                  
-                  <div class="text-gray-500 absolute bottom-2 right-8">Délai</div>
               </div>
-          </div>
-          </div>
-          <button class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>
-      </div>
-      <!-- DOING LIST -->
-      <div class="flex flex-col gap-4 items-center">
-            <div class="border-dashed border-2 border-borderColor rounded-3xl h-auto w-full p-4 relative" >
-              <span class="absolute -top-3  left-4 px-2 bg-bgcolor text-xs text-gray-600 font-medium">DOING LIST</span>
-
-            </div>
-            <button class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>
-      </div>
-      <!-- DONE LIST -->
-    <div class="flex flex-col gap-4 items-center">
-             <div  class="border-dashed border-2 border-borderColor rounded-3xl h-auto w-full p-4 relative">
-              <span class="absolute -top-3  left-4 px-2 bg-bgcolor text-xs text-gray-600 font-medium">DONE LISTE</span>
-
-             </div>
-             <button class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>
-    </div>
-     </div>
     </main>
 
 </section>
 
+<script src="./script.js"></script>
     
 </body>
 </html>
