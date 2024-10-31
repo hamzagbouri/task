@@ -6,6 +6,8 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://use.typekit.net/your-kit-id.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 
     <script>
         tailwind.config = {
@@ -83,12 +85,10 @@
                       <h3>TODO List</h3>
                       
                       <p id="nbrTodoArea">0</p>
-                      <img   data-twe-toggle="tooltip"
-                      data-twe-placement="right"
-                      data-twe-ripple-init
-                      data-twe-ripple-color="light"
-                      title="Filter by priority" onclick="filterAllTasks()" class="w-12 cursor-pointer" aria-placeholder="a" src="./image/filter.png" alt="">
-                        
+                      <div class="flex">
+                      <svg   xmlns="http://www.w3.org/2000/svg" width="2rem" height="1.85rem" viewBox="0 0 24 24"  onclick="filterAllTasksByDate()" class="fill-[#616161] cursor-pointer"><path  d="m8 2l-.707-.707L8 .586l.707.707zm1 15a1 1 0 1 1-2 0zM2.293 6.293l5-5l1.414 1.414l-5 5zm6.414-5l5 5l-1.414 1.414l-5-5zM9 2v15H7V2zm7 20l-.707.707l.707.707l.707-.707zm1-15a1 1 0 1 0-2 0zm-6.707 10.707l5 5l1.414-1.414l-5-5zm6.414 5l5-5l-1.414-1.414l-5 5zM17 22V7h-2v15z"/></svg>
+                      <img    data-twe-toggle="tooltip" data-twe-placement="right" data-twe-ripple-init data-twe-ripple-color="light"title="Filter by priority" onclick="filterAllTasks()" class="w-12 cursor-pointer" aria-placeholder="a" src="./image/filter.png" alt="">
+                    </div>
                    
                     </div>
                       <div id="todo-tasks-container" class="border-dashed border-2 border-borderColor rounded-3xl h-auto  p-4 w-full relative z-10">
@@ -156,7 +156,7 @@
                     data-twe-placement="right"
                     data-twe-ripple-init
                     data-twe-ripple-color="light"
-                    title="Filter by priority" onclick="filterTodo()" class="w-12 cursor-pointer" aria-placeholder="a" src="./image/filter.png" alt="">                  </div>
+                    title="Filter by priority" onclick="filterAllTasks()" class="w-12 cursor-pointer" aria-placeholder="a" src="./image/filter.png" alt="">                  </div>
                         <div id="done-tasks-container"  class="border-dashed border-2 border-borderColor rounded-3xl h-auto w-full p-4 z-10">
 
                         </div>
