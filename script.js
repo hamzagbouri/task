@@ -199,11 +199,18 @@ const btnAddModal = document.getElementById('btn-add-modal')
 const errorText = document.getElementById('error-text')
 const errorDiv = document.getElementById('error')
 const nbrTodoArea = document.getElementById('nbrTodoArea')
+const nbrDoingArea = document.getElementById('nbrDoingArea')
+const nbrDoneArea = document.getElementById('nbrDoneArea')
+const statusDiv = document.getElementById('status-div')
+
+
 
 const todoTasksContainer = document.getElementById('todo-tasks-container');
 const doingTasksContainer = document.getElementById('doing-tasks-container');
 const doneTasksContainer = document.getElementById('done-tasks-container');
+const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+localStorage.setItem('id', tasks.length);
 
 let editMode = false;
 let taskIndexToEdit = null;
@@ -213,42 +220,57 @@ document.getElementById('btn-add-doing').addEventListener("click", () => showMod
 document.getElementById('btn-add-done').addEventListener("click", () => showModal('Add Done Task', 'done'));
 
 taskForm.addEventListener('submit', handleTaskSubmit);
-const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-function showModal(actionType, status, task = null, index = null) {
+function showModal(actionType, status, ide = null) {
     errorText.innerHTML=''
     modal.style.display = 'flex';
     modalTitle.innerHTML = actionType;
-    editMode = task !== null;
-    taskIndexToEdit = index;
+    editMode = ide !== null;
+    console.log("rgeuuerg", ide)
+    // taskIndexToEdit = id;
     btnAddModal.innerText='Add Task'
 
     if (editMode) {
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-        const t = tasks[index];
+        for ( let i = 0; i<tasks.length ; i++){
+            console.log('wach kitsawaw: ', tasks[i].id == ide, 'index', i)
+
+            if(tasks[i].id == ide){
+                 taskIndexToEdit = i ;
+
+            }
+        }
+        console.log("apah", taskIndexToEdit)
+        const t = tasks[taskIndexToEdit];
         btnAddModal.innerText='Save Task'
+        statusDiv.innerHTML= `
+                    <input type="radio" id="s1" name="taskStatus" value="todo" ${t.status === 'todo' ? 'checked' : ''} > To Do
+                    <input type="radio" id="s2" name="taskStatus" value="doing"  ${t.status === 'doing' ? 'checked' : ''}  > Doing
+                    <input type="radio" id="s3" name="taskStatus" value="done" ${t.status === 'done' ? 'checked' : ''}> Done`   
         console.log('ss', t)
         priorityInput.value = t.priority;
         titleInput.value = t.title;
         dateInput.value = t.date;
         descriptionInput.value = t.description;
+        console.log("all tasks",tasks)
     } else {
         taskForm.reset();
     }
+    taskForm.status = status;
 
-    taskForm.dataset.status = status;
 }
 
 function handleTaskSubmit(event) {
     event.preventDefault();
-
     const newTask = {
         priority: priorityInput.value,
         title: titleInput.value,
         date: dateInput.value,
         description: descriptionInput.value,
-        status: taskForm.dataset.status
+        status: document.querySelector('input[name="taskStatus"]:checked').value,
     };
+    
    if (newTask.title == "" || newTask.date === "")
 {
     errorText.innerText='Some Inputs are empty!!'
@@ -258,16 +280,20 @@ else {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
     if (editMode) {
-        console.log("to edit",tasks[taskIndexToEdit], taskIndexToEdit )
-        console.log("new", newTask)
+        newTask.id =  tasks[taskIndexToEdit].id
          tasks[taskIndexToEdit] = newTask;
-         console.log("to edit",tasks[taskIndexToEdit], taskIndexToEdit )
+         editMode = false;
 
     } else {
+        const idd = parseInt(localStorage.getItem('id'))  ; 
+        newTask.id = idd;
+        console.log('new',newTask)
         tasks.push(newTask);
+        localStorage.setItem('id', idd+1)      
     }
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    
     modal.style.display = 'none';
 
     displayTasks(tasks);
@@ -286,17 +312,17 @@ let nbrDone = 0;
     tasks.forEach((task, index) => {
         const taskCard = document.createElement('div');
         taskCard.className = "card w-full h-32 bg-white rounded-bl-3xl rounded-br-3xl flex flex-col mb-8 relative";
-        
+        taskCard.setAttribute("draggable", "true");       
         
         taskCard.innerHTML = `
             <div class="absolute top-0 left-0 w-full h-2 ${task.priority === '1' ? 'bg-red-500' : task.priority === '2' ? 'bg-yellow-500' : 'bg-green-500'} rounded-t-3xl"></div>
             <div class="flex flex-col px-4 h-full justify-center items-center relative">
                 <div class="absolute top-4 right-2" >
-                    <svg onclick="showModal('Edit Task', '${task.status}', '${task}', '${index}')" xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" class="fill-current text-gray-600">
+                    <svg onclick="showModal('Edit Task', '${task.status}', '${task.id}')" xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" class="fill-current text-gray-600">
                         <path d="m14.06 9.02l.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/>
                     </svg>
                 </div>
-                <div class="font-semibold text-gray-800 mt-4">${task.title}</div>
+                <div class="font-semibold text-gray-800 mt-4">${task.title}, ${task.id}, index: ${index}</div>
                 <div class="text-gray-500 absolute bottom-2 right-8">${task.date}</div>
             </div>
         `;
@@ -311,15 +337,19 @@ let nbrDone = 0;
             doneTasksContainer.appendChild(taskCard);
             nbrDone++;
         }
-        nbrTodoArea.innerText=nbrTodo
+        nbrTodoArea.innerText=nbrTodo;
+        nbrDoingArea.innerText=nbrDoing;
+        nbrDoneArea.innerText=nbrDone;
+       
+
 
     });
 }
 
 displayTasks(tasks);
 
-function filterTodo(){
-    const todoTasks = tasks.filter(tasks => tasks.status === "todo")
+function filterAllTasks(){
+    const allTasks = JSON.parse(localStorage.getItem('tasks'));
     var customSort = function(a,b) {
         if (a.priority === b.priority) return 0;
         if (a.priority > b.priority) return 1;
@@ -327,34 +357,16 @@ function filterTodo(){
     };
     
     console.log("before sorting");
-    for (var i = 0; i < todoTasks.length; i++) {
-        console.log(todoTasks[i].title);
+    for (var i = 0; i < allTasks.length; i++) {
+        console.log(allTasks[i].title);
     }
-    todoTasks.sort(customSort);
+    allTasks.sort(customSort);
     
-    console.log("after sorting");
-    for (var i = 0; i < todoTasks.length; i++) {
-        console.log(todoTasks[i].title);
-    }
-    // for(let i =0; i< todoTasks.length-1; i++){
-    //     if(todoTasks[i].priority == 'P2' && todoTasks[i+1].priority == 'P1' || todoTasks[i].priority == 'P3' && todoTasks[i+1].priority == 'P1' )
-    //     {
-    //         let temp = todoTasks[i];
-    //         todoTasks[i] = todoTasks[i+1];
-    //         todoTasks[i+1]=temp;
-    //         var j = i;
-    //     }
-    // }
-    // for(let i =j; i< todoTasks.length-1; i++){
-    //     if(todoTasks[i].priority == 'P3' && todoTasks[i+1].priority == 'P2' )
-    //     {
-    //         let temp = todoTasks[i];
-    //         todoTasks[i] = todoTasks[i+1];
-    //         todoTasks[i+1]=temp;
-    //     }
-    // }
+    console.log("after sorting", allTasks);
+  
 
-    console.log("filter",todoTasks)
-    displayTasks(todoTasks)
+
+    console.log("filter",allTasks)
+    displayTasks(allTasks);
 }
-filterTodo();
+
