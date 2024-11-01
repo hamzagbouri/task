@@ -39,8 +39,14 @@ const todoTasksContainer = document.getElementById('todo-tasks-container');
 const doingTasksContainer = document.getElementById('doing-tasks-container');
 const doneTasksContainer = document.getElementById('done-tasks-container');
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+var l = 0;
+for (let i =0; i<tasks.length;i++){
+    if (tasks[i].id>l){
+        l=i
+    }
+}
+localStorage.setItem('id', l);
 
-localStorage.setItem('id', tasks.length);
 
 let editMode = false;
 let taskIndexToEdit = null;
