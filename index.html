@@ -12,6 +12,9 @@
     <script>
         tailwind.config = {
           theme: {
+            screens: {
+                'md': '768px',
+            },
          
             extend: {
               colors: {
@@ -31,11 +34,11 @@
 </head>
 <body class=" font-title m-0 p-0 bg-[#F3F3F3] w-full h-full ">
     <section class="h-full w-full">
-    <nav class="nav bg-white w-full h-20 flex items-center justify-between  gap-48 shadow-3xl border border-gray-200 shadow-lg">
+    <nav class="nav bg-white w-full h-20 flex items-center justify-between  gap-48 shadow-3xl border border-gray-200 shadow-lg ">
         <h1 class="  text-3xl pl-8 ">Task<span class="font-bold text-primary">Flow</span></h1>
         <div class="pr-5 flex gap-4 items-center  ">
             <div class="relative inline-block">
-            <input class=" pl-2 bg-[#DDDBFF] rounded-3xl h-10 w-32 focus:w-48 transition-all duration-300 ease-in-out outline-black text-center" type="search" name="text" placeholder="search">
+            <input onkeyup="searchTask()" id="searchInput" class=" pl-2 bg-[#DDDBFF] rounded-3xl h-10 w-32 focus:w-48 transition-all duration-300 ease-in-out outline-black text-center" type="search" name="text" placeholder="search">
             <svg class="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
@@ -49,9 +52,9 @@
    
 
 </section>
-<section class="grid grid-cols-[auto_1fr] ">
-  <aside class="h-full bg-primary rounded-tr-3xl  w-64 border border-gray-200 shadow-lg none">
-    <div class="flex flex-col pl-8  pt-16 ">
+<section class="grid grid-cols-[auto_1fr] h-max ">
+  <aside class=" h-screen bg-primary rounded-tr-3xl  w-64 border border-gray-200 shadow-lg md:  ">
+    <div class="flex flex-col pl-8  pt-16 min-h-full ">
  
      <ul class=" font-smedium  gap-16 flex flex-col text-white font-semibold   ">
          
@@ -64,7 +67,7 @@
  
     </aside>
     <main class="p-4 flex flex-col gap-16"> 
-      <div class="flex flex-col justify-between">
+      <div class="flex flex-col justify-between ">
 
     
                   <h2 class="text-3xl">Task<span class="text-primary font-semibold font-title">Flow</span> <span class="font-bigTitle">manage ur tasks smoothly</span></h2>
@@ -78,9 +81,9 @@
                   
                 </div>
                   <!-- Tasks -->
-                  <div class="bg-gray-100 p-4 grid grid-cols-3 justify-content-center w-full gap-8">
+                  <div class="bg-gray-100 p-4 grid grid-cols-3 justify-content-center h-full w-full gap-8">
 
-                  <div class="flex flex-col gap-4 items-center relative">
+                  <div class="flex flex-col gap-4 items-center relative ">
                     <div id="" class="border-dashed border-2 border-borderColor rounded-3xl h-16 bg-white  p-4 w-full relative z-10 flex justify-between">
                       <h3>TODO List</h3>
                       

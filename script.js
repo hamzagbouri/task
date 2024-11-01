@@ -17,7 +17,7 @@ class Card {
         console.log(`Description: ${this.description}`);
     }
 }
-
+const searchInput = document.getElementById("searchInput");
 const modal = document.getElementById('modal');
 const modalTitle = document.getElementById('modal-title');
 const taskForm = document.getElementById('task-form');
@@ -57,7 +57,6 @@ function showModal(actionType, status, ide = null) {
     modalTitle.innerHTML = actionType;
     editMode = ide !== null;
     console.log("rgeuuerg", ide)
-    // taskIndexToEdit = id;
     btnAddModal.innerText='Add Task'
      statusDiv.innerHTML= ``
 
@@ -184,8 +183,35 @@ function displayTasks(tasks )
 
     });
 }
+function searchTask(){
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    var filteredTasks = []
+    var txtValue;
+    var a;
+    filter = searchInput.value.toUpperCase();
+    
+   
+    for (let i =0; i<tasks.length;i++){
+
+        a = tasks[i].title;
+        var b = a.toUpperCase();
+        if (b.indexOf(filter) > -1){
+          
+
+            filteredTasks.push(tasks[i])
+             displayTasks(filteredTasks)
+        }
+        else {
+            displayTasks(filteredTasks)
+
+        }
+    }
+
+    
+}
 function deleteTask(idd){
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+   
     let a;
         for ( let i = 0; i<tasks.length ; i++){
 
