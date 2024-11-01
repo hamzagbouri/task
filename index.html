@@ -53,7 +53,7 @@
 
 </section>
 <section class="grid grid-cols-[auto_1fr] h-max ">
-  <aside class=" h-screen bg-primary rounded-tr-3xl  w-64 border border-gray-200 shadow-lg md:  ">
+  <aside class=" h-full bg-primary rounded-tr-3xl  w-64 border border-gray-200 shadow-lg md:  ">
     <div class="flex flex-col pl-8  pt-16 min-h-full ">
  
      <ul class=" font-smedium  gap-16 flex flex-col text-white font-semibold   ">
@@ -94,40 +94,8 @@
                     </div>
                    
                     </div>
-                      <div id="todo-tasks-container" class="border-dashed border-2 border-borderColor rounded-3xl h-auto  p-4 w-full relative z-10">
-
-                        <!-- Cards Todo -->
-                        <!-- <div class="card w-full h-32 bg-white rounded-bl-3xl rounded-br-3xl flex flex-col mb-8 relative">
-                          <div class="absolute top-0 left-0 w-full h-2 bg-green-500 rounded-t-3xl"></div>
-                          
-                          <div class="flex flex-col px-4 h-full justify-center items-center relative">
-                              <div class="absolute top-4 right-2">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" class="fill-current text-gray-600">
-                                      <path d="m14.06 9.02l.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/>
-                                  </svg>
-                              </div>
+                      <div id="todo-tasks-container" class="box border-dashed border-2 border-borderColor rounded-3xl h-auto  p-4 w-full relative z-10">
                       
-                              <div class="font-semibold text-gray-800 mt-4">Titre de tâche</div>
-                              
-                              <div class="text-gray-500 absolute bottom-2 right-8">Délai</div>
-                          </div>
-                      </div> -->
-                        <!-- Card2 -->
-                        <!-- <div class="card w-full h-32 bg-white rounded-bl-3xl rounded-br-3xl flex flex-col mb-8 relative">
-                          <div class="absolute top-0 left-0 w-full h-2 bg-red-500 rounded-t-3xl"></div>
-                          
-                          <div class="flex flex-col px-4 h-full justify-center items-center relative">
-                              <div class="absolute top-4 right-2">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" class="fill-current text-gray-600">
-                                      <path d="m14.06 9.02l.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/>
-                                  </svg>
-                              </div>
-                      
-                              <div class="font-semibold text-gray-800 mt-4">Titre de tâche</div>
-                              
-                              <div class="text-gray-500 absolute bottom-2 right-8">Délai</div>
-                          </div>
-                      </div> -->
                       </div>
                       <button id="btn-add-todo" class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>
                   </div>
@@ -144,7 +112,7 @@
                       title="Filter by priority" onclick="filterAllTasks()" class="w-12 cursor-pointer" aria-placeholder="a" src="./image/filter.png" alt="">
                     </div>
                    
-                        <div id="doing-tasks-container" class="border-dashed border-2 border-borderColor rounded-3xl h-auto w-full p-4 relative z-10" >
+                        <div id="doing-tasks-container" class="box border-dashed border-2 border-borderColor rounded-3xl h-auto w-full p-4 relative z-10" >
 
                         </div>
                         <button type="submit" id="btn-add-doing" class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>
@@ -160,7 +128,7 @@
                     data-twe-ripple-init
                     data-twe-ripple-color="light"
                     title="Filter by priority" onclick="filterAllTasks()" class="w-12 cursor-pointer" aria-placeholder="a" src="./image/filter.png" alt="">                  </div>
-                        <div id="done-tasks-container"  class="border-dashed border-2 border-borderColor rounded-3xl h-auto w-full p-4 z-10">
+                        <div id="done-tasks-container"  class="box border-dashed border-2 border-borderColor rounded-3xl h-auto w-full p-4 z-10">
 
                         </div>
                         <button id="btn-add-done" class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>

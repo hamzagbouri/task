@@ -40,12 +40,19 @@ const doingTasksContainer = document.getElementById('doing-tasks-container');
 const doneTasksContainer = document.getElementById('done-tasks-container');
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 var l = 0;
+if (tasks.length==0){
+    localStorage.setItem('id', 0);
+}
+else{
+
 for (let i =0; i<tasks.length;i++){
     if (tasks[i].id>l){
-        l=i
+        l=(tasks[i].id)++
     }
 }
 localStorage.setItem('id', l);
+
+}
 
 
 let editMode = false;
@@ -95,6 +102,16 @@ function showModal(actionType, status, ide = null) {
     taskForm.status = status;
 
 }
+// console.log("date", x)
+// function getDate(){
+//     x = new Date();
+//     var year = x.getFullYear()
+//     var month = x.getMonth()+1
+//     var day = x.getDa
+
+// }
+// var todayDate =  
+
 
 function handleTaskSubmit(event) {
     event.preventDefault();
@@ -110,6 +127,7 @@ function handleTaskSubmit(event) {
     errorText.innerText='Some Inputs are empty!!'
     errorText.className='text-green text-center'
 }
+
 else {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
@@ -192,7 +210,6 @@ function displayTasks(tasks )
 function searchTask(){
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     var filteredTasks = []
-    var txtValue;
     var a;
     filter = searchInput.value.toUpperCase();
     
@@ -282,175 +299,11 @@ function filterAllTasksByDate(){
     displayTasks(allTasks);
 }
 
-
-// class card {
-//     constructor(priority, title, date, status,description){
-//         this.priority=priority;
-//         this.title=title;
-//         this.date=date;
-//         this.status=status;
-//         this.description=description;
-//     }
-//     displayProduct(){
-//         console.log(`Priority: ${this.priority}`);
-//         console.log(`title: ${this.title}`);
-//         console.log(`date: ${this.date}`);
-//         console.log(`status: ${this.status}`);
-//         console.log(`description: ${this.description}`);
-//     }
-
-// }
-// // 
-// // console.log("todo", todoTasks)
-// // 
-// // console.log("doing", todoTasks)
-// // 
-// // console.log("done", todoTasks)
-
-
-// const modal = document.getElementById('modal');
-// const modalTitle = document.getElementById('modal-title');
-// const addDone = document.getElementById('btn-add-done');
-// const addDoing = document.getElementById('btn-add-doing');
-// const addToDo = document.getElementById('btn-add-todo');
-// const taskForm = document.getElementById('task-form');
-// const todoTasksContainer = document.getElementById('todo-tasks-container');
-// const doingTasksContainer = document.getElementById('doing-tasks-container');
-// const doneTasksContainer = document.getElementById('done-tasks-container');
-
-// // DOING TASKS IMPLEMENTATION
-// addDoing.addEventListener("click", addDoingTask);
-// function addDoingTask(){
-
-//     modal.style.display='flex';
-//     modalTitle.innerHTML='Add a Doing Task';
-//     document.getElementById('task-title-input').setValue='Title test';
-//     taskForm.addEventListener('submit', function(event) {
-//         event.preventDefault;
-//         addTask("doing");
+let darg = null;
+document.querySelectorAll(".card").addEventListener("dragstart" , function () {
         
-//     });
-    
-// }
+})
+document.querySelectorAll(".card").addEventListener("dragend" , function () {
+    console.log("end")
 
-
-// // DONE TASKS IMPLEMENTATION
-// addDone.addEventListener("click", addDoneTask);
-// function addDoneTask(){
-
-//     modal.style.display='flex';
-//     modalTitle.innerHTML='Add a Done Task';
-//    taskForm.addEventListener('submit', function(event) {
-//         event.preventDefault;
-//         addTask("done");
-        
-//     });
-    
-    
-// }
-
-// // TODO TASKS IMPLEMENTATION
-// addToDo.addEventListener("click", addToDoTask);
-// function addToDoTask(){
-
-//     modal.style.display='flex';
-//     modalTitle.innerHTML='Add a ToDo Task';
-//     taskForm.addEventListener('submit', function(event) {
-//         event.preventDefault;
-//         addTask("todo");
-        
-//     });
-
-    
-// }
-
-// // Task Form submit 
-
-// function addTask(stats){
-    
-//     const p = document.getElementById('priority-list').value;
-//         const t = document.getElementById('task-title-input').value;
-//         const d = document.getElementById('task-date-input').value;
-//         const des = document.getElementById('task-description-input').value;
-//         const task = {
-//             priority: p,
-//             title: t,
-//             date: d,
-//             description: des,
-//             status: stats
-//         };
-//         const existingTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-//         existingTasks.push(task);
-//         localStorage.setItem('tasks', JSON.stringify(existingTasks));
-        
-// }
-// const doingTasks = JSON.parse(localStorage.getItem('tasks')).filter(tasks => tasks.status === "doing");
-// const todoTasks = JSON.parse(localStorage.getItem('tasks')).filter(tasks => tasks.status === "todo");
-// const doneTasks = JSON.parse(localStorage.getItem('tasks')).filter(tasks => tasks.status === "done");
-
-// todoTasks.forEach((task, index) => {
-//     const taskCard = document.createElement('div');
-//     taskCard.className = "card w-full h-32 bg-white rounded-bl-3xl rounded-br-3xl flex flex-col mb-8 relative";
-
-//     taskCard.innerHTML = `
-//         <div class="absolute top-0 left-0 w-full h-2 ${task.priority === 'P1' ? 'bg-red-500' : task.priority === 'P2' ? 'bg-yellow-500' : 'bg-green-500'} rounded-t-3xl"></div>
-        
-//         <div class="flex flex-col px-4 h-full justify-center items-center relative">
-//             <div class="absolute top-4 right-2">
-//                 <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" onclick='' class="fill-current text-gray-600">
-//                     <path d="m14.06 9.02l.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/>
-//                 </svg>
-//             </div>
-
-//             <div class="font-semibold text-gray-800 mt-4">${task.title}</div>
-//             <div class="text-gray-500 absolute bottom-2 right-8">${task.date}</div>
-//         </div>
-//     `;
-
-    
-//     todoTasksContainer.appendChild(taskCard);
-// });
-// doingTasks.forEach(task => {
-//     const taskCard = document.createElement('div');
-//     taskCard.className = "card w-full h-32 bg-white rounded-bl-3xl rounded-br-3xl flex flex-col mb-8 relative";
-
-//     taskCard.innerHTML = `
-//         <div class="absolute top-0 left-0 w-full h-2 ${task.priority === 'P1' ? 'bg-red-500' : task.priority === 'P2' ? 'bg-yellow-500' : 'bg-green-500'} rounded-t-3xl"></div>
-        
-//         <div class="flex flex-col px-4 h-full justify-center items-center relative">
-//             <div class="absolute top-4 right-2">
-//                 <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" class="fill-current text-gray-600">
-//                     <path d="m14.06 9.02l.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/>
-//                 </svg>
-//             </div>
-
-//             <div class="font-semibold text-gray-800 mt-4">${task.title}</div>
-//             <div class="text-gray-500 absolute bottom-2 right-8">${task.date}</div>
-//         </div>
-//     `;
-
-    
-//     doingTasksContainer.appendChild(taskCard);
-// });
-// doneTasks.forEach(task => {
-//     const taskCard = document.createElement('div');
-//     taskCard.className = "card w-full h-32 bg-white rounded-bl-3xl rounded-br-3xl flex flex-col mb-8 relative";
-
-//     taskCard.innerHTML = `
-//         <div class="absolute top-0 left-0 w-full h-2 ${task.priority === 'P1' ? 'bg-red-500' : task.priority === 'P2' ? 'bg-yellow-500' : 'bg-green-500'} rounded-t-3xl"></div>
-        
-//         <div class="flex flex-col px-4 h-full justify-center items-center relative">
-//             <div class="absolute top-4 right-2">
-//                 <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" class="fill-current text-gray-600">
-//                     <path d="m14.06 9.02l.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/>
-//                 </svg>
-//             </div>
-
-//             <div class="font-semibold text-gray-800 mt-4">${task.title}</div>
-//             <div class="text-gray-500 absolute bottom-2 right-8">${task.date}</div>
-//         </div>
-//     `;
-
-    
-//     doneTasksContainer.appendChild(taskCard);
-// });
+})
