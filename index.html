@@ -7,7 +7,27 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://use.typekit.net/your-kit-id.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <style>
+      /* Custom scrollbar styling */
+      #todo-tasks-container::-webkit-scrollbar {
+        width: 8px; /* Scrollbar width */
+      }
+    
+      #todo-tasks-container::-webkit-scrollbar-track {
+        background-color: #f0f0f0; /* Track background color */
+        border-radius: 10px;
+      }
+    
+      #todo-tasks-container::-webkit-scrollbar-thumb {
+        background-color: #888; /* Thumb color */
+        border-radius: 10px;
+        border: 2px solid #f0f0f0; /* Adds spacing between thumb and track */
+      }
+    
+      #todo-tasks-container::-webkit-scrollbar-thumb:hover {
+        background-color: #555; /* Thumb color on hover */
+      }
+    </style>
 
     <script>
         tailwind.config = {
@@ -66,7 +86,7 @@
      </div>
  
     </aside>
-    <main class="p-4 flex flex-col gap-16"> 
+    <main class="p-4 flex flex-col gap-8"> 
       <div class="flex flex-col justify-between ">
 
     
@@ -74,9 +94,7 @@
                   
                   <p class="text-gray-400  text-md">Designed by Hamza GBOURI</p>
 
-                  <h4 class="pt-4">
-                    Fil
-                  </h4>
+                
                   
                   
                 </div>
@@ -94,7 +112,7 @@
                     </div>
                    
                     </div>
-                      <div id="todo-tasks-container" class="box border-dashed border-2 border-borderColor rounded-3xl h-auto  p-4 w-full relative z-10">
+                      <div id="todo-tasks-container" datastatus="todo" class=" overflow-y-auto	 box border-dashed border-2 border-borderColor rounded-3xl h-screen  p-4 w-full relative z-10">
                       
                       </div>
                       <button id="btn-add-todo" class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>
@@ -105,14 +123,21 @@
                       <h3>Doing List</h3>
                       
                       <p id="nbrDoingArea">0</p>
-                      <img   data-twe-toggle="tooltip"
+                      <div class="flex">
+                        <svg   xmlns="http://www.w3.org/2000/svg" width="2rem" height="1.85rem" viewBox="0 0 24 24"  onclick="filterAllTasksByDate()" class="fill-[#616161] cursor-pointer"><path  d="m8 2l-.707-.707L8 .586l.707.707zm1 15a1 1 0 1 1-2 0zM2.293 6.293l5-5l1.414 1.414l-5 5zm6.414-5l5 5l-1.414 1.414l-5-5zM9 2v15H7V2zm7 20l-.707.707l.707.707l.707-.707zm1-15a1 1 0 1 0-2 0zm-6.707 10.707l5 5l1.414-1.414l-5-5zm6.414 5l5-5l-1.414-1.414l-5 5zM17 22V7h-2v15z"/></svg>
+
+                        <img   data-twe-toggle="tooltip"
                       data-twe-placement="right"
                       data-twe-ripple-init
                       data-twe-ripple-color="light"
                       title="Filter by priority" onclick="filterAllTasks()" class="w-12 cursor-pointer" aria-placeholder="a" src="./image/filter.png" alt="">
+                      </div>
+
+
+                      
                     </div>
                    
-                        <div id="doing-tasks-container" class="box border-dashed border-2 border-borderColor rounded-3xl h-auto w-full p-4 relative z-10" >
+                        <div id="doing-tasks-container" datastatus="doing" class=" overflow-y-auto box border-dashed border-2 border-borderColor rounded-3xl h-screen w-full p-4 relative z-10" >
 
                         </div>
                         <button type="submit" id="btn-add-doing" class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>
@@ -121,14 +146,20 @@
                 <div class="flex flex-col gap-4 items-center relative">
                   <div id="" class=" flex justify-between border-dashed border-2 border-borderColor rounded-3xl h-16 bg-white  p-4 w-full relative z-10">
                     <h3>Done List</h3>
-                      
+                 
+
+
                     <p id="nbrDoneArea">0</p>
+                    <div class="flex">
+                      <svg   xmlns="http://www.w3.org/2000/svg" width="2rem" height="1.85rem" viewBox="0 0 24 24"  onclick="filterAllTasksByDate()" class="fill-[#616161] cursor-pointer"><path  d="m8 2l-.707-.707L8 .586l.707.707zm1 15a1 1 0 1 1-2 0zM2.293 6.293l5-5l1.414 1.414l-5 5zm6.414-5l5 5l-1.414 1.414l-5-5zM9 2v15H7V2zm7 20l-.707.707l.707.707l.707-.707zm1-15a1 1 0 1 0-2 0zm-6.707 10.707l5 5l1.414-1.414l-5-5zm6.414 5l5-5l-1.414-1.414l-5 5zM17 22V7h-2v15z"/></svg>
+
                     <img   data-twe-toggle="tooltip"
                     data-twe-placement="right"
                     data-twe-ripple-init
                     data-twe-ripple-color="light"
                     title="Filter by priority" onclick="filterAllTasks()" class="w-12 cursor-pointer" aria-placeholder="a" src="./image/filter.png" alt="">                  </div>
-                        <div id="done-tasks-container"  class="box border-dashed border-2 border-borderColor rounded-3xl h-auto w-full p-4 z-10">
+                  </div>
+                    <div id="done-tasks-container"  datastatus="done" class=" overflow-y-autobox border-dashed border-2 border-borderColor rounded-3xl h-screen w-full p-4 z-10">
 
                         </div>
                         <button id="btn-add-done" class="color-primary bg-primary rounded-3xl h-12 w-64 text-white font-title font-bold ">Add Card</button>

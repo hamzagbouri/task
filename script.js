@@ -299,11 +299,48 @@ function filterAllTasksByDate(){
     displayTasks(allTasks);
 }
 
-let darg = null;
-document.querySelectorAll(".card").addEventListener("dragstart" , function () {
-        
-})
-document.querySelectorAll(".card").addEventListener("dragend" , function () {
-    console.log("end")
+let drag = null
+document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener('dragstart', function(){
+        drag = card;
+    })
+    card.addEventListener('dragend',function(){
+        darg = null;
+        console.log("DRAG")
+    })
+    document.querySelectorAll(".box").forEach(box => {
+        box.addEventListener('dragover', function(e){
+            e.preventDefault();
+        })
+        box.addEventListener('dragleave',function(){
+            
+        })
+        box.addEventListener('drop',function(){
+            box.appendChild(drag)
+            // drag.staus = box.stat
+            if (box.id === 'todo-tasks-container') {
+                changeTaskStatus(drag.id, 'todo')
+            } else if (box.id === 'doing-tasks-container') {
+                changeTaskStatus(drag.id, 'doing')
+            } else if (box.id === 'done-tasks-container') {
+                changeTaskStatus(drag.id, 'done')
+            }
+        })
+    });
+});
+function changeTaskStatus(ide, stat){
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    let index =0;
+    for ( let i = 0; i<tasks.length ; i++){
 
-})
+        if(tasks[i].id == ide){
+            index = i ;
+
+        }
+    }
+    tasks[index].status = stat
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    displayTasks(tasks)
+
+}
+
