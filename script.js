@@ -121,12 +121,18 @@ function handleTaskSubmit(event) {
         date: dateInput.value,
         description: descriptionInput.value,
     };
+    const currentDate = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+
     
-   if (newTask.title == "" || newTask.date === "")
-{
-    errorText.innerText='Some Inputs are empty!!'
-    errorText.className='text-green text-center'
-}
+    
+    if (newTask.title == "" || newTask.date === "")
+    {
+        errorText.innerText='Some Inputs are empty!!'
+        errorText.className='text-red-500 text-center'
+    }else if (newTask.date < currentDate) {
+        errorText.innerText = "Date cannot be in the past!";
+        errorText.className = "text-red-500 text-center"; // Adjust color for error message
+    }
 
 else {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
