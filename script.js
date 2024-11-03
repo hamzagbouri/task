@@ -32,6 +32,14 @@ const nbrTodoArea = document.getElementById('nbrTodoArea')
 const nbrDoingArea = document.getElementById('nbrDoingArea')
 const nbrDoneArea = document.getElementById('nbrDoneArea')
 const statusDiv = document.getElementById('status-div')
+const modalMobile = document.getElementById('modal-mobile');
+const addTaskMobile = document.getElementById("add-task-btn-mobile")
+const taskFormMobile = document.getElementById('task-form-mobile');
+const priorityInputMobile = document.getElementById('priority-list-mobile');
+const titleInputMobile = document.getElementById('task-title-input-mobile');
+const dateInputMobile = document.getElementById('task-date-input-mobile');
+const descriptionInputMobile = document.getElementById('task-description-input-mobile');
+const btnAddModalMobile = document.getElementById('btn-add-modal-mobile')
 
 
 
@@ -358,3 +366,6 @@ document.getElementById("burgerToggle").addEventListener("click", function () {
     } else {
         sidebar.style.display = "block"; // Show the sidebar
     }})
+    addTaskMobile.addEventListener("click", function(){
+        modalMobile.style.display="flex"
+    })
