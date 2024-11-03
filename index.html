@@ -54,26 +54,42 @@
 </head>
 <body class=" font-title m-0 p-0 bg-[#F3F3F3] w-full h-full ">
     <section class="h-full w-full">
-    <nav class="nav bg-white w-full h-20 flex items-center justify-between  gap-48 shadow-3xl border border-gray-200 shadow-lg ">
-        <h1 class="  text-3xl pl-8 ">Task<span class="font-bold text-primary">Flow</span></h1>
-        <div class="pr-5 flex gap-4 items-center  ">
-            <div class="relative inline-block">
-            <input onkeyup="searchTask()" id="searchInput" class=" pl-2 bg-[#DDDBFF] rounded-3xl h-10 w-32 focus:w-48 transition-all duration-300 ease-in-out outline-black text-center" type="search" name="text" placeholder="search">
-            <svg class="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+      <nav class="bg-white w-full h-20 flex items-center justify-between shadow-lg border border-gray-200 relative">
+        <div class="flex items-center gap-4 pl-4">
+          <!-- Burger Menu Icon for Mobile -->
+          <button id="burgerToggle" class="md:hidden text-primary focus:outline-none">
+            <svg width="1.5rem" height="1.5rem" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M3 12h18v2H3zm0-7h18v2H3zm0 14h18v2H3z"/>
             </svg>
+          </button>
+          <h1 class="text-3xl">Task<span class="font-bold text-primary">Flow</span></h1>
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 20 20"><path fill="#5051fa" d="M4 8a6 6 0 0 1 4.03-5.67a2 2 0 1 1 3.95 0A6 6 0 0 1 16 8v6l3 2v1H1v-1l3-2zm8 10a2 2 0 1 1-4 0z"/></svg> 
-         <button class=" font-title bg-primary rounded-xl w-32 h-10 text-white font-bold :hover bg-primary-100">Add Task +</button>
-         <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24"><path fill="#5051fa" d="M7.75 2.5a.75.75 0 0 0-1.5 0v1.58c-1.44.115-2.384.397-3.078 1.092c-.695.694-.977 1.639-1.093 3.078h19.842c-.116-1.44-.398-2.384-1.093-3.078c-.694-.695-1.639-.977-3.078-1.093V2.5a.75.75 0 0 0-1.5 0v1.513C15.585 4 14.839 4 14 4h-4c-.839 0-1.585 0-2.25.013z"/><path fill="#5051fa" fill-rule="evenodd" d="M2 12c0-.839 0-1.585.013-2.25h19.974C22 10.415 22 11.161 22 12v2c0 3.771 0 5.657-1.172 6.828S17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172S2 17.771 2 14zm15 2a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-4-5a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-6-3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2" clip-rule="evenodd"/></svg>
+        <!-- Navbar Items -->
+        <div class="pr-5 flex gap-4 items-center">
+          <!-- Search Bar -->
+          <div class="relative inline-block">
+            <input onkeyup="searchTask()" id="searchInput" class="pl-2 bg-[#DDDBFF] rounded-3xl h-10 w-32 focus:w-48 transition-all duration-300 ease-in-out outline-black text-center" type="search" name="text" placeholder="search">
+            <svg class="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+          </div>
+          <!-- Notifications Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 20 20">
+            <path fill="#5051fa" d="M4 8a6 6 0 0 1 4.03-5.67a2 2 0 1 1 3.95 0A6 6 0 0 1 16 8v6l3 2v1H1v-1l3-2zm8 10a2 2 0 1 1-4 0z"/>
+          </svg>
+          <!-- Add Task Button -->
+          <button class="font-title bg-primary rounded-xl w-32 h-10 text-white font-bold hover:bg-primary-100">Add Task +</button>
+          <!-- Other Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24">
+            <path fill="#5051fa" d="M7.75 2.5a.75.75 0 0 0-1.5 0v1.58c-1.44.115-2.384.397-3.078 1.092c-.695.694-.977 1.639-1.093 3.078h19.842c-.116-1.44-.398-2.384-1.093-3.078c-.694-.695-1.639-.977-3.078-1.093V2.5a.75.75 0 0 0-1.5 0v1.513C15.585 4 14.839 4 14 4h-4c-.839 0-1.585 0-2.25.013z"/>
+            <path fill="#5051fa" fill-rule="evenodd" d="M2 12c0-.839 0-1.585.013-2.25h19.974C22 10.415 22 11.161 22 12v2c0 3.771 0 5.657-1.172 6.828S17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172S2 17.771 2 14zm15 2a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-4-5a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-6-3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2" clip-rule="evenodd"/>
+          </svg>
         </div>
-
-    </nav>
-   
+      </nav>
 
 </section>
 <section class="grid grid-cols-[auto_1fr] h-max ">
-  <aside class=" h-full bg-primary rounded-tr-3xl  w-64 border border-gray-200 shadow-lg md:  ">
+  <aside class=" h-full bg-primary rounded-tr-3xl hidden  w-64 border border-gray-200 shadow-lg md:block    ">
     <div class="flex flex-col pl-8  pt-16 min-h-full ">
  
      <ul class=" font-smedium  gap-16 flex flex-col text-white font-semibold   ">
