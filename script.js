@@ -357,14 +357,19 @@ function changeTaskStatus(ide, stat){
     displayTasks(tasks)
 
 }
+window.onclick(function(){
+    const sidebar = document.getElementById("side-bar");
+    sidebar.style.display = "none"; 
+
+})
 
 document.getElementById("burgerToggle").addEventListener("click", function () {
     const sidebar = document.getElementById("side-bar");
 
     if (sidebar.style.display === "block") {
-        sidebar.style.display = "none"; // Hide the sidebar
+        sidebar.style.display = "none"; 
     } else {
-        sidebar.style.display = "block"; // Show the sidebar
+        sidebar.style.display = "block";
     }})
     addTaskMobile.addEventListener("click", function(){
         modalMobile.style.display="flex"
