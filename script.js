@@ -357,20 +357,28 @@ function changeTaskStatus(ide, stat){
     displayTasks(tasks)
 
 }
-window.onclick(function(){
+
+
+
+document.getElementById("burgerToggle").addEventListener("click", function (event) {
     const sidebar = document.getElementById("side-bar");
-    sidebar.style.display = "none"; 
-
-})
-
-document.getElementById("burgerToggle").addEventListener("click", function () {
-    const sidebar = document.getElementById("side-bar");
-
     if (sidebar.style.display === "block") {
-        sidebar.style.display = "none"; 
+        sidebar.style.display = "none";
     } else {
         sidebar.style.display = "block";
-    }})
-    addTaskMobile.addEventListener("click", function(){
-        modalMobile.style.display="flex"
-    })
+    }
+    event.stopPropagation();
+});
+
+addTaskMobile.addEventListener("click", function () {
+    modalMobile.style.display = "flex";
+});
+
+window.addEventListener("click", function (event) {
+    const sidebar = document.getElementById("side-bar");
+    const burgerToggle = document.getElementById("burgerToggle");
+
+    if (sidebar.style.display === "block" && !sidebar.contains(event.target) && event.target !== burgerToggle) {
+        sidebar.style.display = "none";
+    }
+});
