@@ -196,7 +196,7 @@ function displayTasks(tasks )
                 <div class="absolute top-4 right-8">
                 <svg onclick="deleteTask(${task.id})" xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24"><path fill="#990000" d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z"/></svg>
                  </div>
-                <div class="font-semibold text-gray-800 mt-4">${task.title}, ${task.id}, index: ${index}</div>
+                <div class=" font-semibold text-gray-800 mt-4">${task.title}, ${task.id}, index: ${index}</div>
                 <div class="text-gray-500 absolute bottom-2 right-8">Due Date: ${task.date}</div>
             </div>
         `;
@@ -382,3 +382,49 @@ window.addEventListener("click", function (event) {
         sidebar.style.display = "none";
     }
 });
+taskFormMobile.addEventListener("submit", function(event){
+    event.preventDefault();
+    const radioButtons = document.querySelectorAll('input[name="taskStatusMobile"]');
+    
+    const newTask = {
+        priority: priorityInputMobile.value,
+        title: titleInputMobile.value,
+        date: dateInputMobile.value,
+        description: descriptionInputMobile.value,
+
+    };
+    radioButtons.forEach((radio) => {
+        radio.addEventListener("change", () => {
+          if (radio.checked) {
+            newTask.status = radio.value;
+          }
+        });
+      });
+      
+    const currentDate = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+
+    
+    
+    // if (newTask.title == "" || newTask.date === "")
+    // {
+    //     errorText.innerText='Some Inputs are empty!!'
+    //     errorText.className='text-red-500 text-center'
+    // }else if (newTask.date < currentDate) {
+    //     errorText.innerText = "Date cannot be in the past!";
+    //     errorText.className = "text-red-500 text-center"; // Adjust color for error message
+    // }else {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const idd = parseInt(localStorage.getItem('id'))  ; 
+    newTask.id = idd;
+    tasks.push(newTask)
+    console.log('new',newTask)
+    localStorage.setItem('id', idd+1)   
+    console.log("new", newTask)   
+
+
+localStorage.setItem('tasks', JSON.stringify(tasks));
+displayTasks(tasks);
+
+
+
+})
