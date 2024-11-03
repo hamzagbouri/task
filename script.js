@@ -350,3 +350,11 @@ function changeTaskStatus(ide, stat){
 
 }
 
+document.getElementById("burgerToggle").addEventListener("click", function () {
+    const sidebar = document.getElementById("side-bar");
+
+    if (sidebar.style.display === "block") {
+        sidebar.style.display = "none"; // Hide the sidebar
+    } else {
+        sidebar.style.display = "block"; // Show the sidebar
+    }})
